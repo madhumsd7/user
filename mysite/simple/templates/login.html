@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+</head>
+  <body>
+  <div class="topnav">
+{% if user.is_authenticated %}
+<h3>Hello,<b>{{user.first_name}}</b> WELCOME..!</h3><br>
+<a href="/logout/">LOGOUT</a><br><br>
+{%else%}
+<a href="/home/">HOME</a>
+<a href="/login/">LOGIN</a>
+<a href="/register/">REGISTER</a>
+<a href="/admin/">DJANGO ADMIN PAGE</a>
+{%endif%}
+</div>
+<div id="d1">
+  <form method="post" action="/login/" id="form1">
+  {% csrf_token %}
+  <label for="username">USERNAME</label>
+  <input type="text"name="username" autocomplete="off"><br>
+  <label for="password">PASSWORD</label>
+  <input type="password" name="password">
+  <br>
+  <input type="submit">
+  </form>
+</div>
+  
+     
+     <div id="d2">
+        {% for i in messages%}
+         <h4>{{ i }}</h4>
+         {%endfor%}       
+    </div>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+</head>
+<body>
+<div class="topnav">
+{% if user.is_authenticated %}
+<h3>Hello,<b>{{user.first_name}}</b> WELCOME..!</h3><br>
+<a href="/logout/">LOGOUT</a><br><br>
+{%else%}
+<a href="/home/">HOME</a>
+<a href="/login/">LOGIN</a>
+<a href="/register/">REGISTER</a>
+<a href="/admin/">DJANGO ADMIN PAGE</a>
+{%endif%}
+</div>
+<div id="d3">
+  <form action = "/register/" method="post">
+  {% csrf_token %}
+  <label for="username">FIRSTNAME</label>
+  <input type="text" name="first_name" placeholder="fistname" required autocomplete="off"><br><br>
+  <label for="username">LASTNAME</label>
+  <input type="text" name="last_name" placeholder="lastname"required autocomplete="off"><br><br>
+  <label for="username">USERNAME</label>
+  <input type="text" name="username" placeholder="username"required autocomplete="off"><br><br>
+  <label for="username">EMAIL</label>
+  <input type="email" name="email" placeholder="email"required autocomplete="off"><br><br>
+  <label for="username">PASSWORD</label>
+  <input type="password" name="password1" placeholder="passworrd"required autocomplete="off"><br><br>
+  <label for="username">CONFIRM PASSWORD</label>
+  <input type="password" name="password2" placeholder="confirm password"required autocomplete="off"><br><br>
+  <input type="Submit">
+  </form>
+</div>
+<div>
+  {%  for messege in messages %}
+ <h4>{{ messege }}</h4>
+ {% endfor%}
+</div>
+</body>
+</html>
